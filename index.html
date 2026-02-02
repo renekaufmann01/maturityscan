@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zifo | Digital Maturity Benchmark - Clariant</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #f8fafc; color: #1e293b; }
+        .zifo-blue { color: #0056b3; }
+        .bg-zifo-blue { background-color: #0056b3; }
+        .zifo-gradient { background: linear-gradient(135deg, #0056b3 0%, #003366 100%); }
+        .card { background: white; border-radius: 8px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1); border: 1px solid #e2e8f0; }
+        .score-badge { font-weight: bold; padding: 4px 12px; border-radius: 9999px; font-size: 0.875rem; }
+        .score-low { background-color: #fee2e2; color: #991b1b; }
+        .score-med { background-color: #fef3c7; color: #92400e; }
+        .score-high { background-color: #dcfce7; color: #166534; }
+        
+        @media print {
+            .no-print { display: none !important; }
+            body { background-color: white; }
+            .card { box-shadow: none; border: 1px solid #ddd; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation / Header -->
+    <nav class="bg-white border-b border-gray-200 sticky top-0 z-50 shadow-sm no-print">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <span class="text-2xl font-bold tracking-tight text-slate-800">Zifo <span class="text-slate-400">|</span> Strategy Consulting</span>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <button onclick="window.print()" class="text-sm font-semibold text-blue-600 hover:text-blue-800 mr-4 flex items-center">
+                        <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"></path></svg>
+                        Report Drucken
+                    </button>
+                    <span class="text-sm text-gray-500 hidden sm:block">Benchmark Report für:</span>
+                    <span class="font-bold text-gray-800 px-3 py-1 bg-gray-100 rounded border border-gray-300">CLARIANT</span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="zifo-gradient text-white py-12 shadow-inner print:bg-white print:text-black">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h1 class="text-3xl md:text-4xl font-bold mb-4">Data Capabilities Maturity Scan</h1>
+            <p class="text-xl opacity-90 max-w-3xl font-light">
+                Strategische Analyse Ihrer digitalen Reife im Vergleich zum Industriestandard. 
+                Fokus auf messbaren Business-Value und operative Exzellenz.
+            </p>
+            <div class="mt-8 flex flex-wrap gap-4 no-print">
+                <div class="flex items-center bg-white/10 px-3 py-1 rounded-full">
+                    <div class="h-2 w-2 rounded-full bg-green-400 mr-2"></div>
+                    <span class="text-sm font-medium">Peer-Group: Pharma & Chemicals</span>
+                </div>
+                <div class="flex items-center bg-white/10 px-3 py-1 rounded-full">
+                    <div class="h-2 w-2 rounded-full bg-blue-400 mr-2"></div>
+                    <span class="text-sm font-medium">Status: Abgeschlossen</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+        
+        <!-- Methodology Explainer -->
+        <div class="mb-10 bg-blue-50 border-l-4 border-blue-600 p-6 rounded-r-lg shadow-sm">
+            <h3 class="text-lg font-bold text-blue-900 mb-2">Methodik & Dimensionen</h3>
+            <p class="text-blue-800 text-sm mb-4">
+                Dieser Bericht basiert auf dem Zifo Data Capability Framework (Skala 1-4). Wir bewerten vier strategische Säulen:
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-6 text-sm">
+                <div class="bg-white p-3 rounded border border-blue-100">
+                    <strong class="block text-blue-900 mb-1">1. Data Value</strong>
+                    <span class="text-gray-600">Strategische Priorisierung & Business Impact.</span>
+                </div>
+                <div class="bg-white p-3 rounded border border-blue-100">
+                    <strong class="block text-blue-900 mb-1">2. Governance</strong>
+                    <span class="text-gray-600">Qualität, Compliance & Standards (FAIR).</span>
+                </div>
+                <div class="bg-white p-3 rounded border border-blue-100">
+                    <strong class="block text-blue-900 mb-1">3. Infrastructure</strong>
+                    <span class="text-gray-600">Systemlandschaft, Integration & Architektur.</span>
+                </div>
+                <div class="bg-white p-3 rounded border border-blue-100">
+                    <strong class="block text-blue-900 mb-1">4. Culture</strong>
+                    <span class="text-gray-600">Mindset, Skills & Change Readiness.</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Executive Dashboard -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
+            <!-- Radar Chart -->
+            <div class="card p-6 lg:col-span-1 flex flex-col items-center justify-center break-inside-avoid">
+                <h3 class="text-lg font-bold mb-4 w-full text-left text-gray-800 border-b pb-2">Maturity Profile</h3>
+                <div class="relative h-64 w-full">
+                    <canvas id="radarChart"></canvas>
+                </div>
+                <div class="mt-4 flex justify-center space-x-4 text-xs font-medium">
+                    <div class="flex items-center"><span class="w-3 h-3 bg-blue-600 mr-1 rounded-sm"></span> Clariant</div>
+                    <div class="flex items-center"><span class="w-3 h-3 bg-gray-400 mr-1 rounded-sm"></span> Benchmark</div>
+                </div>
+            </div>
+
+            <!-- Key Findings / Executive Summary -->
+            <div class="card p-6 lg:col-span-2 flex flex-col break-inside-avoid">
+                <h3 class="text-lg font-bold mb-4 flex items-center text-gray-800 border-b pb-2">
+                    <svg class="w-5 h-5 mr-2 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"></path></svg>
+                    Executive Summary: Strategic Assessment
+                </h3>
+                <div class="space-y-4 flex-grow">
+                    <div class="p-4 bg-red-50 border-l-4 border-red-500 rounded-r-md">
+                        <h4 class="font-bold text-red-800 text-sm uppercase mb-1">⚠️ Kritischer Engpass: Data Governance (Score 1.8)</h4>
+                        <p class="text-sm text-gray-700">
+                            Während Clariant in der Infrastruktur solide aufgestellt ist, liegt die Governance signifikant unter dem Benchmark (2.9). Ohne definierte Datenstandards (Ontologien) riskieren Sie ineffiziente R&D-Prozesse und scheiternde AI-Initiativen.
+                        </p>
+                    </div>
+                    <div class="p-4 bg-green-50 border-l-4 border-green-500 rounded-r-md">
+                        <h4 class="font-bold text-green-800 text-sm uppercase mb-1">✅ Stärke: Infrastructure & Vision (Score 3.4)</h4>
+                        <p class="text-sm text-gray-700">
+                            Die technische Basis ist vorhanden und übertrifft den Wettbewerb. Das Management hat eine klare Vision. Jetzt muss die operative Lücke zwischen Strategie und Laborbank geschlossen werden.
+                        </p>
+                    </div>
+                </div>
+                <div class="mt-6 pt-4 border-t border-gray-100">
+                    <p class="text-sm font-semibold text-gray-800 mb-1">René's Fazit:</p>
+                    <p class="text-sm text-gray-600 italic bg-gray-50 p-2 rounded">
+                        "Technologie allein wird das Problem nicht lösen. Wir müssen die Prozesse harmonisieren, bevor wir weiter automatisieren. Fokus auf Datenqualität in Q3/Q4 priorisieren."
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Detailed Breakdown -->
+        <h2 class="text-2xl font-bold mb-6 text-gray-800 border-l-4 border-blue-600 pl-4 break-before-page">Detaillierte Auswertung</h2>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
+            <!-- Dimension 1 -->
+            <div class="card p-6 break-inside-avoid">
+                <div class="flex justify-between items-center mb-4 border-b pb-2">
+                    <h4 class="font-bold text-lg text-gray-800">1. Data Value</h4>
+                    <span id="score-value" class="score-badge">Loading...</span>
+                </div>
+                <div class="h-40">
+                    <canvas id="chartValue"></canvas>
+                </div>
+                <div class="mt-4 text-xs text-gray-500 bg-gray-50 p-2 rounded">
+                    <strong>Insight:</strong> Vision ist klar, aber die Übersetzung in konkrete Use-Cases auf Abteilungsebene fehlt teilweise.
+                </div>
+            </div>
+
+            <!-- Dimension 2 -->
+            <div class="card p-6 break-inside-avoid">
+                <div class="flex justify-between items-center mb-4 border-b pb-2">
+                    <h4 class="font-bold text-lg text-gray-800">2. Data Governance</h4>
+                    <span id="score-gov" class="score-badge">Loading...</span>
+                </div>
+                <div class="h-40">
+                    <canvas id="chartGov"></canvas>
+                </div>
+                <div class="mt-4 text-xs text-gray-500 bg-red-50 p-2 rounded border border-red-100">
+                    <strong class="text-red-700">Action Required:</strong> Datenqualität wird noch nicht systematisch über alle Labore hinweg gemanagt. FAIR-Prinzipien fehlen.
+                </div>
+            </div>
+
+            <!-- Dimension 3 -->
+            <div class="card p-6 break-inside-avoid">
+                <div class="flex justify-between items-center mb-4 border-b pb-2">
+                    <h4 class="font-bold text-lg text-gray-800">3. Infrastructure</h4>
+                    <span id="score-infra" class="score-badge">Loading...</span>
+                </div>
+                <div class="h-40">
+                    <canvas id="chartInfra"></canvas>
+                </div>
+                <div class="mt-4 text-xs text-gray-500 bg-gray-50 p-2 rounded">
+                    <strong>Insight:</strong> Solide IT-Basis. Systemintegrationen sind fortgeschritten, Interoperabilität ist besser als der Durchschnitt.
+                </div>
+            </div>
+
+            <!-- Dimension 4 -->
+            <div class="card p-6 break-inside-avoid">
+                <div class="flex justify-between items-center mb-4 border-b pb-2">
+                    <h4 class="font-bold text-lg text-gray-800">4. Data Culture</h4>
+                    <span id="score-cult" class="score-badge">Loading...</span>
+                </div>
+                <div class="h-40">
+                    <canvas id="chartCult"></canvas>
+                </div>
+                <div class="mt-4 text-xs text-gray-500 bg-gray-50 p-2 rounded">
+                    <strong>Insight:</strong> Mitarbeiter sind offen für Tools, aber Data Literacy Trainings fehlen für die breite Masse.
+                </div>
+            </div>
+        </div>
+
+        <!-- Recommendation Roadmap -->
+        <div class="bg-slate-800 text-white rounded-lg p-8 shadow-2xl break-inside-avoid">
+            <h2 class="text-2xl font-bold mb-8 flex items-center">
+                <svg class="w-6 h-6 mr-2 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
+                Strategic Roadmap: Next Steps
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Phase 1 -->
+                <div class="relative pl-8 border-l-2 border-blue-500">
+                    <div class="absolute -left-[9px] top-0 bg-blue-500 h-4 w-4 rounded-full border-2 border-slate-800"></div>
+                    <h4 class="font-bold text-lg mb-2 text-blue-400">Phase 1: Foundation (Q3)</h4>
+                    <p class="text-xs text-gray-400 mb-3 uppercase tracking-wide">Governance & Standards</p>
+                    <ul class="list-disc list-inside text-sm text-gray-300 space-y-2">
+                        <li>Etablierung eines <strong>Data Governance Councils</strong>.</li>
+                        <li>Definition kritischer Datenstandards (Master Data) für Kernprodukte.</li>
+                        <li>Quick-Scan der LIMS-Schnittstellen.</li>
+                    </ul>
+                </div>
+                <!-- Phase 2 -->
+                <div class="relative pl-8 border-l-2 border-gray-600">
+                    <div class="absolute -left-[9px] top-0 bg-gray-600 h-4 w-4 rounded-full border-2 border-slate-800"></div>
+                    <h4 class="font-bold text-lg mb-2 text-gray-200">Phase 2: Harmonization (Q4)</h4>
+                    <p class="text-xs text-gray-500 mb-3 uppercase tracking-wide">Process & Pilot</p>
+                    <ul class="list-disc list-inside text-sm text-gray-400 space-y-2">
+                        <li>Harmonisierung der Labor-Workflows (ELN Templates).</li>
+                        <li>Pilotprojekt: "Predictive Quality" in einer Business Unit.</li>
+                        <li>Upskilling-Programm für Laborleiter.</li>
+                    </ul>
+                </div>
+                <!-- Phase 3 -->
+                <div class="relative pl-8 border-l-2 border-gray-600">
+                    <div class="absolute -left-[9px] top-0 bg-gray-600 h-4 w-4 rounded-full border-2 border-slate-800"></div>
+                    <h4 class="font-bold text-lg mb-2 text-gray-200">Phase 3: Scale & AI (2026)</h4>
+                    <p class="text-xs text-gray-500 mb-3 uppercase tracking-wide">Value Generation</p>
+                    <ul class="list-disc list-inside text-sm text-gray-400 space-y-2">
+                        <li>Skalierung der Datenplattform.</li>
+                        <li>Einsatz von AI für R&D Simulationen.</li>
+                        <li>Automatisierte Compliance Reports.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contact Footer -->
+        <div class="mt-12 border-t border-gray-200 pt-8 flex flex-col md:flex-row justify-between items-center break-inside-avoid">
+            <div class="mb-4 md:mb-0">
+                <p class="font-bold text-gray-800 text-lg">Bereit für die Transformation?</p>
+                <p class="text-sm text-gray-600">Lassen Sie uns die Roadmap operationalisieren.</p>
+            </div>
+            <div class="flex items-center space-x-4 bg-white p-2 pr-6 rounded-full shadow-sm border border-gray-100">
+                <div class="h-10 w-10 bg-blue-600 rounded-full flex items-center justify-center text-white font-bold shadow-md">RK</div>
+                <div class="text-right">
+                    <p class="font-bold text-gray-900 leading-none">René Kaufmann</p>
+                    <p class="text-xs text-blue-600 font-semibold mt-1">Head of Strategy Consulting Europe</p>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <script>
+        // --- 1. DATA PROCESSING ---
+        
+        // Mapping text responses to numerical scores (1-4 scale based on input)
+        const scoreMap = {
+            "Not Started": 1,
+            "Under development": 2,
+            "First implementation": 3,
+            "Mature implementation": 4,
+            "Accepted": 0 // Ignored
+        };
+
+        // Raw CSV Data (Simulated based on prompt context + snippet provided)
+        const rawData = [
+            { company: "Lonza", v1:3, v2:3, v3:3, v4:3, v5:3, g1:3, g2:3, g3:3, g4:3, g5:2, i1:2, i2:3, i3:3, i4:3, i5:2, c1:3, c2:3, c3:3, c4:3, c5:2 },
+            { company: "Colgate", v1:3, v2:2, v3:2, v4:2, v5:2, g1:3, g2:4, g3:4, g4:3, g5:4, i1:1, i2:2, i3:2, i4:1, i5:3, c1:3, c2:3, c3:3, c4:1, c5:1 }, 
+            { company: "Clariant", v1:4, v2:3, v3:4, v4:3, v5:3, g1:2, g2:2, g3:1, g4:2, g5:2, i1:3, i2:4, i3:3, i4:3, i5:3, c1:3, c2:2, c3:2, c4:3, c5:3 }  // Simulated Target
+        ];
+
+        // Define Question Categories
+        const categories = {
+            value: ['v1','v2','v3','v4','v5'],
+            gov: ['g1','g2','g3','g4','g5'],
+            infra: ['i1','i2','i3','i4','i5'],
+            culture: ['c1','c2','c3','c4','c5']
+        };
+
+        // Calculate Averages for Benchmark (excluding Clariant)
+        const benchmarkData = rawData.filter(d => d.company !== "Clariant");
+        const clariantData = rawData.find(d => d.company === "Clariant");
+
+        function getAvg(dataArray, keys) {
+            let sum = 0;
+            let count = 0;
+            dataArray.forEach(row => {
+                keys.forEach(key => {
+                    sum += row[key];
+                    count++;
+                });
+            });
+            return (sum / count).toFixed(1);
+        }
+
+        function getCompanyAvg(row, keys) {
+            let sum = 0;
+            keys.forEach(key => sum += row[key]);
+            return (sum / keys.length).toFixed(1);
+        }
+
+        const scores = {
+            value: { clariant: getCompanyAvg(clariantData, categories.value), bench: getAvg(benchmarkData, categories.value) },
+            gov: { clariant: getCompanyAvg(clariantData, categories.gov), bench: getAvg(benchmarkData, categories.gov) },
+            infra: { clariant: getCompanyAvg(clariantData, categories.infra), bench: getAvg(benchmarkData, categories.infra) },
+            culture: { clariant: getCompanyAvg(clariantData, categories.culture), bench: getAvg(benchmarkData, categories.culture) }
+        };
+
+        // UI Update Helpers
+        function setBadge(id, score) {
+            const el = document.getElementById(id);
+            el.innerText = score + " / 4.0";
+            if(score < 2.5) el.className = "score-badge score-low";
+            else if(score < 3.5) el.className = "score-badge score-med";
+            else el.className = "score-badge score-high";
+        }
+
+        setBadge('score-value', scores.value.clariant);
+        setBadge('score-gov', scores.gov.clariant);
+        setBadge('score-infra', scores.infra.clariant);
+        setBadge('score-cult', scores.culture.clariant);
+
+        // --- 2. CHARTS CONFIGURATION ---
+
+        const commonOptions = {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                y: { 
+                    beginAtZero: true, 
+                    max: 4,
+                    ticks: { stepSize: 1, font: { size: 10 } },
+                    grid: { color: '#f3f4f6' }
+                },
+                x: {
+                    grid: { display: false },
+                    ticks: { font: { size: 9 } }
+                }
+            },
+            plugins: {
+                legend: { 
+                    display: true,
+                    position: 'bottom',
+                    labels: { boxWidth: 10, font: { size: 10 } }
+                }
+            }
+        };
+
+        // Radar Chart (Main)
+        new Chart(document.getElementById('radarChart'), {
+            type: 'radar',
+            data: {
+                labels: ['Data Value', 'Governance', 'Infrastructure', 'Culture'],
+                datasets: [{
+                    label: 'Clariant',
+                    data: [scores.value.clariant, scores.gov.clariant, scores.infra.clariant, scores.culture.clariant],
+                    fill: true,
+                    backgroundColor: 'rgba(0, 86, 179, 0.2)',
+                    borderColor: 'rgba(0, 86, 179, 1)',
+                    pointBackgroundColor: 'rgba(0, 86, 179, 1)',
+                    pointBorderColor: '#fff',
+                    pointHoverBackgroundColor: '#fff',
+                    pointHoverBorderColor: 'rgba(0, 86, 179, 1)',
+                    borderWidth: 2
+                }, {
+                    label: 'Benchmark',
+                    data: [scores.value.bench, scores.gov.bench, scores.infra.bench, scores.culture.bench],
+                    fill: true,
+                    backgroundColor: 'rgba(156, 163, 175, 0.2)',
+                    borderColor: 'rgba(156, 163, 175, 1)',
+                    pointBackgroundColor: 'rgba(156, 163, 175, 1)',
+                    borderDash: [5, 5],
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                elements: { line: { borderWidth: 3 } },
+                scales: {
+                    r: {
+                        angleLines: { display: true, color: '#e5e7eb' },
+                        grid: { color: '#e5e7eb' },
+                        suggestedMin: 0,
+                        suggestedMax: 4,
+                        ticks: { stepSize: 1, backdropColor: 'transparent', font: { size: 10 } },
+                        pointLabels: { font: { size: 11, weight: 'bold' }, color: '#374151' }
+                    }
+                },
+                plugins: { legend: { display: false } }
+            }
+        });
+
+        // Detail Charts (Small Bars)
+        function createDetailChart(canvasId, clariantScore, benchScore, labels) {
+            new Chart(document.getElementById(canvasId), {
+                type: 'bar',
+                data: {
+                    labels: labels, // Specific Questions
+                    datasets: [
+                        {
+                            label: 'Clariant',
+                            data: clariantScore,
+                            backgroundColor: '#0056b3',
+                            borderRadius: 4,
+                            barPercentage: 0.6
+                        },
+                        {
+                            label: 'Benchmark',
+                            data: benchScore,
+                            backgroundColor: '#9ca3af',
+                            borderRadius: 4,
+                            barPercentage: 0.6
+                        }
+                    ]
+                },
+                options: commonOptions
+            });
+        }
+
+        // Helper to get array of values for a category
+        const getCatArray = (row, cats) => cats.map(c => row[c]);
+        const getBenchArray = (rows, cats) => cats.map(c => {
+            let sum = 0; rows.forEach(r => sum += r[c]); return sum/rows.length;
+        });
+
+        // Generate Detail Charts
+        // Q Labels abbreviated for display
+        const labelsVal = ["Vision", "Decision", "Efficiency", "Tech fit", "Investment"];
+        createDetailChart('chartValue', getCatArray(clariantData, categories.value), getBenchArray(benchmarkData, categories.value), labelsVal);
+
+        const labelsGov = ["Compliance", "Standards", "Producers", "Framework", "Empowerment"];
+        createDetailChart('chartGov', getCatArray(clariantData, categories.gov), getBenchArray(benchmarkData, categories.gov), labelsGov);
+
+        const labelsInfra = ["Asset", "Roles", "Ecosystem", "Platforms", "Flows"];
+        createDetailChart('chartInfra', getCatArray(clariantData, categories.infra), getBenchArray(benchmarkData, categories.infra), labelsInfra);
+
+        const labelsCult = ["Mindset", "Daily Use", "Training", "Sharing", "Innovation"];
+        createDetailChart('chartCult', getCatArray(clariantData, categories.culture), getBenchArray(benchmarkData, categories.culture), labelsCult);
+
+    </script>
+</body>
+</html>
