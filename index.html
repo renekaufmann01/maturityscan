@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Zifo | Digital Maturity Benchmark - Clariant</title>
+    <title>Zifo | Digital Maturity Benchmark - Acme Corp</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
@@ -40,7 +40,7 @@
                         Print as pdf
                     </button>
                     <span class="text-sm text-gray-500 hidden sm:block">Benchmark Report für:</span>
-                    <span class="font-bold text-gray-800 px-3 py-1 bg-gray-100 rounded border border-gray-300">CLARIANT</span>
+                    <span class="font-bold text-gray-800 px-3 py-1 bg-gray-100 rounded border border-gray-300">Acme Corp</span>
                 </div>
             </div>
         </div>
@@ -105,7 +105,7 @@
                     <canvas id="radarChart"></canvas>
                 </div>
                 <div class="mt-4 flex justify-center space-x-4 text-xs font-medium">
-                    <div class="flex items-center"><span class="w-3 h-3 bg-blue-600 mr-1 rounded-sm"></span> Clariant</div>
+                    <div class="flex items-center"><span class="w-3 h-3 bg-blue-600 mr-1 rounded-sm"></span> Acme Corp</div>
                     <div class="flex items-center"><span class="w-3 h-3 bg-gray-400 mr-1 rounded-sm"></span> Benchmark</div>
                 </div>
             </div>
@@ -120,7 +120,7 @@
                     <div class="p-4 bg-red-50 border-l-4 border-red-500 rounded-r-md">
                         <h4 class="font-bold text-red-800 text-sm uppercase mb-1">⚠️ Critical Gap: Data Governance (Score 1.8)</h4>
                         <p class="text-sm text-gray-700">
-                            While Clariant seems well-positioned in its ecosystem, the data governance dimension scores below benchmark (2.9). For example, without defined data standards or ontologies and no clear data governance you risk inefficient use of data to improve R&D processs and readiness for AI.
+                            While Acme Corp seems well-positioned in its ecosystem, the data governance dimension scores below benchmark (2.9). For example, without defined data standards or ontologies and no clear data governance you risk inefficient use of data to improve R&D processs and readiness for AI.
                         </p>
                     </div>
                     <div class="p-4 bg-green-50 border-l-4 border-green-500 rounded-r-md">
@@ -276,7 +276,7 @@
         const rawData = [
             { company: "Lonza", v1:3, v2:3, v3:3, v4:3, v5:3, g1:3, g2:3, g3:3, g4:3, g5:2, i1:2, i2:3, i3:3, i4:3, i5:2, c1:3, c2:3, c3:3, c4:3, c5:2 },
             { company: "Colgate", v1:3, v2:2, v3:2, v4:2, v5:2, g1:3, g2:4, g3:4, g4:3, g5:4, i1:1, i2:2, i3:2, i4:1, i5:3, c1:3, c2:3, c3:3, c4:1, c5:1 }, 
-            { company: "Clariant", v1:4, v2:3, v3:4, v4:3, v5:3, g1:2, g2:2, g3:1, g4:2, g5:2, i1:3, i2:4, i3:3, i4:3, i5:3, c1:3, c2:2, c3:2, c4:3, c5:3 }  // Simulated Target
+            { company: "Acme Corp", v1:4, v2:3, v3:4, v4:3, v5:3, g1:2, g2:2, g3:1, g4:2, g5:2, i1:3, i2:4, i3:3, i4:3, i5:3, c1:3, c2:2, c3:2, c4:3, c5:3 }  // Simulated Target
         ];
 
         // Define Question Categories
@@ -287,9 +287,9 @@
             culture: ['c1','c2','c3','c4','c5']
         };
 
-        // Calculate Averages for Benchmark (excluding Clariant)
-        const benchmarkData = rawData.filter(d => d.company !== "Clariant");
-        const clariantData = rawData.find(d => d.company === "Clariant");
+        // Calculate Averages for Benchmark (excluding Acme Corp)
+        const benchmarkData = rawData.filter(d => d.company !== "Acme Corp");
+        const Acme CorpData = rawData.find(d => d.company === "Acme Corp");
 
         function getAvg(dataArray, keys) {
             let sum = 0;
@@ -310,10 +310,10 @@
         }
 
         const scores = {
-            value: { clariant: getCompanyAvg(clariantData, categories.value), bench: getAvg(benchmarkData, categories.value) },
-            gov: { clariant: getCompanyAvg(clariantData, categories.gov), bench: getAvg(benchmarkData, categories.gov) },
-            infra: { clariant: getCompanyAvg(clariantData, categories.infra), bench: getAvg(benchmarkData, categories.infra) },
-            culture: { clariant: getCompanyAvg(clariantData, categories.culture), bench: getAvg(benchmarkData, categories.culture) }
+            value: { Acme Corp: getCompanyAvg(Acme CorpData, categories.value), bench: getAvg(benchmarkData, categories.value) },
+            gov: { Acme Corp: getCompanyAvg(Acme CorpData, categories.gov), bench: getAvg(benchmarkData, categories.gov) },
+            infra: { Acme Corp: getCompanyAvg(Acme CorpData, categories.infra), bench: getAvg(benchmarkData, categories.infra) },
+            culture: { Acme Corp: getCompanyAvg(Acme CorpData, categories.culture), bench: getAvg(benchmarkData, categories.culture) }
         };
 
         // UI Update Helpers
@@ -325,10 +325,10 @@
             else el.className = "score-badge score-high";
         }
 
-        setBadge('score-value', scores.value.clariant);
-        setBadge('score-gov', scores.gov.clariant);
-        setBadge('score-infra', scores.infra.clariant);
-        setBadge('score-cult', scores.culture.clariant);
+        setBadge('score-value', scores.value.Acme Corp);
+        setBadge('score-gov', scores.gov.Acme Corp);
+        setBadge('score-infra', scores.infra.Acme Corp);
+        setBadge('score-cult', scores.culture.Acme Corp);
 
         // --- 2. CHARTS CONFIGURATION ---
 
@@ -362,8 +362,8 @@
             data: {
                 labels: ['Data Value', 'Governance', 'Infrastructure', 'Culture'],
                 datasets: [{
-                    label: 'Clariant',
-                    data: [scores.value.clariant, scores.gov.clariant, scores.infra.clariant, scores.culture.clariant],
+                    label: 'Acme Corp',
+                    data: [scores.value.Acme Corp, scores.gov.Acme Corp, scores.infra.Acme Corp, scores.culture.Acme Corp],
                     fill: true,
                     backgroundColor: 'rgba(0, 86, 179, 0.2)',
                     borderColor: 'rgba(0, 86, 179, 1)',
@@ -402,15 +402,15 @@
         });
 
         // Detail Charts (Small Bars)
-        function createDetailChart(canvasId, clariantScore, benchScore, labels) {
+        function createDetailChart(canvasId, Acme CorpScore, benchScore, labels) {
             new Chart(document.getElementById(canvasId), {
                 type: 'bar',
                 data: {
                     labels: labels, // Specific Questions
                     datasets: [
                         {
-                            label: 'Clariant',
-                            data: clariantScore,
+                            label: 'Acme Corp',
+                            data: Acme CorpScore,
                             backgroundColor: '#0056b3',
                             borderRadius: 4,
                             barPercentage: 0.6
@@ -437,16 +437,16 @@
         // Generate Detail Charts
         // Q Labels abbreviated for display
         const labelsVal = ["Vision", "Decision", "Efficiency", "Tech fit", "Investment"];
-        createDetailChart('chartValue', getCatArray(clariantData, categories.value), getBenchArray(benchmarkData, categories.value), labelsVal);
+        createDetailChart('chartValue', getCatArray(Acme CorpData, categories.value), getBenchArray(benchmarkData, categories.value), labelsVal);
 
         const labelsGov = ["Compliance", "Standards", "Producers", "Framework", "Empowerment"];
-        createDetailChart('chartGov', getCatArray(clariantData, categories.gov), getBenchArray(benchmarkData, categories.gov), labelsGov);
+        createDetailChart('chartGov', getCatArray(Acme CorpData, categories.gov), getBenchArray(benchmarkData, categories.gov), labelsGov);
 
         const labelsInfra = ["Asset", "Roles", "Ecosystem", "Platforms", "Flows"];
-        createDetailChart('chartInfra', getCatArray(clariantData, categories.infra), getBenchArray(benchmarkData, categories.infra), labelsInfra);
+        createDetailChart('chartInfra', getCatArray(Acme CorpData, categories.infra), getBenchArray(benchmarkData, categories.infra), labelsInfra);
 
         const labelsCult = ["Mindset", "Daily Use", "Training", "Sharing", "Innovation"];
-        createDetailChart('chartCult', getCatArray(clariantData, categories.culture), getBenchArray(benchmarkData, categories.culture), labelsCult);
+        createDetailChart('chartCult', getCatArray(Acme CorpData, categories.culture), getBenchArray(benchmarkData, categories.culture), labelsCult);
 
     </script>
 </body>
