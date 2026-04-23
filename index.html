@@ -5,40 +5,69 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Data Capabilities Maturity Scan Report</title>
     <link rel="stylesheet" href="styles.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/chart.js/3.7.1/chart.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
     <header>
-        <h1>Data Capabilities Maturity Scan Report</h1>
-        <p>Date: February 2, 2026</p>
+        <h1>Zifo Digital Maturity Benchmark Report</h1>
     </header>
-    <section id="report">
-        <h2>Executive Summary</h2>
-        <p>This is the complete report analyzing the maturity of data capabilities...</p>
-        <canvas id="dataChart" width="400" height="200"></canvas>
+    <section id="introduction">
+        <h2>Introduction</h2>
+        <p>This report provides an overview of the data capabilities maturity assessment conducted on February 2, 2026.</p>
+    </section>
+    <section id="maturity-levels">
+        <h2>Maturity Levels</h2>
+        <canvas id="radarChart" width="400" height="400"></canvas>
+    </section>
+    <section id="dimension-breakdowns">
+        <h2>Dimension Breakdowns</h2>
+        <div id="dimensionContainer"></div>
+    </section>
+    <section id="strategic-roadmap">
+        <h2>Strategic Roadmap</h2>
+        <p>Here we outline the strategic initiatives to enhance data maturity.</p>
     </section>
     <script>
-        const ctx = document.getElementById('dataChart').getContext('2d');
-        const dataChart = new Chart(ctx, {
-            type: 'bar',
+        // JavaScript logic for data processing and chart rendering
+        const radarCtx = document.getElementById('radarChart').getContext('2d');
+        const radarChart = new Chart(radarCtx, {
+            type: 'radar',
             data: {
-                labels: ['Capability 1', 'Capability 2', 'Capability 3'],
+                labels: ['Integration', 'Analytics', 'Governance', 'Culture', 'Infrastructure'],
                 datasets: [{
                     label: 'Maturity Levels',
-                    data: [12, 19, 3],
-                    backgroundColor: ['rgba(75, 192, 192, 0.2)', 'rgba(255, 99, 132, 0.2)', 'rgba(255, 206, 86, 0.2)'],
-                    borderColor: ['rgba(75, 192, 192, 1)', 'rgba(255, 99, 132, 1)', 'rgba(255, 206, 86, 1)'],
+                    data: [3, 4, 2, 5, 3], // replace with actual data
+                    backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                    borderColor: 'rgba(255, 99, 132, 1)',
                     borderWidth: 1
                 }]
             },
             options: {
-                scales: {
-                    y: {
-                        beginAtZero: true
+                scale: {
+                    ticks: {
+                        beginAtZero: true,
+                        max: 5
                     }
                 }
             }
         });
+
+        // Additional JavaScript for dimension breakdowns and roadmap
+        function renderDimensionBreakdowns() {
+            const dimensions = [
+                { name: 'Integration', score: 3 },
+                { name: 'Analytics', score: 4 },
+                { name: 'Governance', score: 2 },
+                { name: 'Culture', score: 5 },
+                { name: 'Infrastructure', score: 3 }
+            ];
+            dimensions.forEach(dimension => {
+                const div = document.createElement('div');
+                div.innerText = `${dimension.name}: Score ${dimension.score}`;
+                document.getElementById('dimensionContainer').appendChild(div);
+            });
+        }
+        renderDimensionBreakdowns();
     </script>
 </body>
 </html>
