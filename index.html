@@ -1,35 +1,46 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <title>Data Capabilities Maturity Scan</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="script.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zifo Digital Maturity Benchmark Report</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
-    <h1>Data Capabilities Maturity Scan Report</h1>
-    <div class="radar-chart">
-        <!-- Radar chart will be inserted here -->
-    </div>
-    <h2>Full Report</h2>
-    <p>This report contains the evaluation of the following dimensions:</p>
-    <ul>
-        <li>Data Value</li>
-        <li>Governance</li>
-        <li>Ecosystem</li>
-        <li>Culture</li>
-    </ul>
-    <div class="chart-container">
-        <canvas id="radarChart"></canvas>
-    </div>
+    <header>
+        <h1>Zifo Digital Maturity Benchmark Report</h1>
+    </header>
+    <section id="report">
+        <h2>Executive Summary</h2>
+        <p>This report provides insights into the digital maturity of organizations across various sectors...</p>
+        <canvas id="maturityChart"></canvas>
+    </section>
+    <footer>
+        <p>&copy; 2026 Zifo Technologies.</p>
+    </footer>
     <script>
-        // JavaScript functionality for radar charts
-        const ctx = document.getElementById('radarChart').getContext('2d');
-        const radarChart = new Chart(ctx, {
-            type: 'radar',
+        // Chart.js configuration
+        var ctx = document.getElementById('maturityChart').getContext('2d');
+        var maturityChart = new Chart(ctx, {
+            type: 'bar',
             data: {
-                // Data values
+                labels: ['Development', 'Implementation', 'Optimization'],
+                datasets: [{
+                    label: 'Maturity Levels',
+                    data: [12, 19, 3],
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 1
+                }]
             },
             options: {
-                // Chart options
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
             }
         });
     </script>
